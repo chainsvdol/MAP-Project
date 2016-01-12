@@ -25,22 +25,15 @@ import com.google.android.gms.maps.GoogleMap;
 
 
 public class MainActivity extends AppCompatActivity {
-   //xxxxxxxxxxx
+
    //Explicit
     private TextView showLatTextView, showLongTextView;
     private LocationManager objLocationManager;
     private Criteria objCriteria;
     private boolean GPSABoolean, networkABoolean;
 
-    //private  GoogleMap mGoogleMap;
-    //private  SupportMapFragment mSupportMapFragment;
-    //private  GoogleMap mainMap;
-    //private GoogleMap mMap;
 
-    //public Double curLat;
-    //public Double curLong;
 
-   //XXXXXXXXX
 
 
     @Override
@@ -51,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         bindWidget();
 
         openServiceGetLocation();
+
+
 
 
 
@@ -67,17 +62,21 @@ public class MainActivity extends AppCompatActivity {
         // Sent lat,Lng to MapActivity
         objIntent.putExtra("Lat", strLat);
         objIntent.putExtra("Lng", strLng);
-
-
-
-        Toast.makeText(MainActivity.this,strLat,Toast.LENGTH_LONG).show();
+        //Toast.makeText(MainActivity.this,strLat,Toast.LENGTH_LONG).show();
         startActivity(objIntent);
-
-
-
-
     }
 
+    public void findGps52(View view){
+
+        String strLat = showLatTextView.getText().toString();
+        String strLng = showLongTextView.getText().toString();
+        Intent objIntent = new Intent(MainActivity.this, MapsActivity.class);
+        // Sent lat,Lng to MapActivity
+        objIntent.putExtra("Lat", strLat);
+        objIntent.putExtra("Lng", strLng);
+        //Toast.makeText(MainActivity.this,strLat,Toast.LENGTH_LONG).show();
+        startActivity(objIntent);
+    }
 
     public void findChain (View view){
       Intent objIntent = new Intent(Intent.ACTION_VIEW);

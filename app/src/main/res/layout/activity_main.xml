@@ -13,7 +13,7 @@
         android:id="@+id/main_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:layout_alignParentTop="true"
         android:layout_above="@+id/txtShowLat"
         android:layout_alignRight="@+id/btnFindGPS"
@@ -24,17 +24,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="ค้นหาหมุดหลักฐานแผนที่ใกล้เคียง"
+        android:text="ค้นหาหมุดหลักฐานแผนที่บริเวณใกล้เคียง"
         android:onClick="findGps"
-
         android:id="@+id/btnFindGPS"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:layout_above="@+id/btnfindChain"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnfindChain" />
 
     <Button
         android:layout_width="150dp"
@@ -70,6 +67,7 @@
         android:textColor="#fb0310"
         android:layout_below="@+id/main_map"
         android:layout_alignRight="@+id/main_map"
-        android:layout_alignEnd="@+id/main_map" />
+        android:layout_alignEnd="@+id/main_map"
+        android:textAlignment="viewEnd" />
 
 </RelativeLayout>
