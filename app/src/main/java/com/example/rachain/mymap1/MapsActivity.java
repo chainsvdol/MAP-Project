@@ -27,15 +27,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Double[][] douLatLong;
-    private Double [] distGPS;
+    private Double[] distGPS;
     private String[] txtStation;
     public String centLat;
     public String centLng;
     public Double centerMapLat;
     public Double centerMapLng;
-
-
-
 
 
     /**
@@ -54,12 +51,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         //// Get Value Lat Lng Form Main Activity
-        Intent inbound =getIntent();
+        Intent inbound = getIntent();
         centLat = inbound.getStringExtra("Lat");
         centLng = inbound.getStringExtra("Lng");
         /////  Convert to double
-        centerMapLat=Double.parseDouble(centLat);
-        centerMapLng=Double.parseDouble(centLng);
+        centerMapLat = Double.parseDouble(centLat);
+        centerMapLng = Double.parseDouble(centLng);
 
         //Toast.makeText(MapsActivity.this,centLat+" : "+centLng,Toast.LENGTH_LONG).show();
         // /////////
@@ -1755,11 +1752,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         douLatLong[560][1] = 100.407823625;
 
 
-        for (int i = 10; i <= 569; i++) {
+       // for (int i = 10; i <= 569; i++) {
 
-            distGPS[i] =Math.sqrt(Math.pow((douLatLong[i][0]-centerMapLat),2)+Math.pow((douLatLong [i][1]-centerMapLng),2));
+       //     distGPS[i] = Math.sqrt(Math.pow((douLatLong[i][0] - centerMapLat), 2) + Math.pow((douLatLong[i][1] - centerMapLng), 2));
 
-        }
+       //}
 
 
     }//  End Set Data
@@ -1780,7 +1777,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         //////   Show MyLocation
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             return;
         }
@@ -1790,7 +1787,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         mMap.setMyLocationEnabled(true);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(centerMapLat,centerMapLng),13));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(centerMapLat, centerMapLng), 13));
 
 
         setData();
@@ -1841,31 +1838,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     } // End onStop
 
 
-
-
-
-    public void markGpstomap(){
-
-        String textdist;
+    public void markGpstomap() {
+        Double distBaseGPS;
 
         //   Loop For Mark Gps Location //569
         for (int i = 10; i <= 569; i++) {
-             //distBase[i] =Math.sqrt(Math.pow((douLatLong[i][0]-centerMapLat),2)-Math.pow((douLatLong [i][1]-centerMapLng),2));
+            distBaseGPS = Math.sqrt(Math.pow((douLatLong[i][0] - centerMapLat), 2) + Math.pow((douLatLong[i][1] - centerMapLng), 2));
 
-            // if(Math.sqrt(Math.pow((douLatLong[i][0]-centerMapLat),2)-Math.pow((douLatLong [i][1]-centerMapLng),2))<=0.1806532) {
-           if (distGPS[i]<0.0906532) {
-                    //mMap.addMarker(new MarkerOptions().position(new LatLng(douLatLong[i][0], douLatLong[i][1]))
-                //    .title(txtStation[i])).setSnippet((txtStation[i]));
-                //Toast.makeText(MapsActivity.this,textdist,Toast.LENGTH_LONG).show();
+
+            if (distBaseGPS < 0.0906532) {
+               //Toast.makeText(MapsActivity.this,textdist,Toast.LENGTH_LONG).show();
                 mMap.addMarker(new MarkerOptions().position(new LatLng(douLatLong[i][0], douLatLong[i][1]))
-                        // .title(txtStation[i])).setSnippet("Lat ="+douLatLong[i][0].toString()+" Long="+douLatLong[i][1].toString());
-                        .title(txtStation[i])).setSnippet("ระยะจากตำแหน่งปัจจุบัน : "+ String.format("%.2f",((distGPS[i] / 0.000009) / 1000) )+" กม.");
+                        .title(txtStation[i])).setSnippet("ระยะจากตำแหน่งปัจจุบัน : " + String.format("%.2f", ((distBaseGPS / 0.000009) / 1000)) + " กม.");
+                // .title(txtStation[i])).setSnippet("Lat ="+douLatLong[i][0].toString()+" Long="+douLatLong[i][1].toString());
+                //.title(txtStation[i])).setSnippet("ระยะจากตำแหน่งปัจจุบัน : "+ String.format("%.2f",((distGPS[i] / 0.000009) / 1000) )+" กม.");
 
-            //}else{
-               //String.format("%.2f",Double.toString((distGPS[i] / 0.000009) / 1000) )+" กม.");
-
-
-           }////if
+            }////if
 
         }  // End for
 
