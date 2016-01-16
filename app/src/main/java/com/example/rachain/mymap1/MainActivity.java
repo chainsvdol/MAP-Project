@@ -17,13 +17,9 @@ import android.support.v4.app.FragmentActivity;
 import android.view.textservice.TextInfo;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.GoogleMap;
-
-
-
 public class MainActivity extends AppCompatActivity {
 
    //Explicit
@@ -31,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager objLocationManager;
     private Criteria objCriteria;
     private boolean GPSABoolean, networkABoolean;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         openServiceGetLocation();
 
-
-
-
-
     }// Main onCreate
-
-
-
 
     public void findGps(View view) {
 
@@ -212,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void openServiceGetLocation() {
-
         objLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         objCriteria = new Criteria();
         objCriteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -220,19 +204,5 @@ public class MainActivity extends AppCompatActivity {
         objCriteria.setBearingRequired(false);
 
     }  // OpenServiceGetLocation
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 } //  Main Class
